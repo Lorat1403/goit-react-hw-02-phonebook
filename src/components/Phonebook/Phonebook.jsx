@@ -28,7 +28,7 @@ export default class Phonebook extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.chekingContacts();
+    this.checkContacts();
     this.setState(prevState => {
       const newContact = {
         id: nanoid(),

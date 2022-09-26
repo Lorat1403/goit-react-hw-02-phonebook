@@ -2,8 +2,8 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { Form, Label, Input, Button } from './ContactForm.styled';
 
-const nameInputId = nanoid();
-const numberInputId = nanoid();
+const nameInputId = nanoid(5);
+const numberInputId = nanoid(8);
 
 const ContactForm = ({ onSubmit, onChange, nameValue, numberValue }) => {
   return (
