@@ -28,7 +28,28 @@ export default class Phonebook extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.checkContacts();
+
+    const name = e.target.name.value;
+    const number = e.target.number.value;
+    const contactsNames = this.state.contacts.find(
+      contact => contact.name === name
+    );
+    const contactsNumbers = this.state.contacts.find(
+      contact => contact.number === number
+    );
+
+    if (contactsNames) {
+      alert(`${name} is already in contacts`);
+      this.reset();
+      return;
+    }
+
+    if (contactsNumbers) {
+      alert(`${number} is already in contacts`);
+      this.reset();
+      return;
+    }
+
     this.setState(prevState => {
       const newContact = {
         id: nanoid(),
@@ -42,6 +63,7 @@ export default class Phonebook extends Component {
       };
     });
   };
+
   searchFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
@@ -58,15 +80,6 @@ export default class Phonebook extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
-  };
-
-  checkContacts = () => {
-    const { contacts, name } = this.state;
-    const findContact = contacts.find(contact => contact.name === name);
-
-    if (findContact) {
-      alert(`${this.state.name} is already in contacts`);
-    }
   };
 
   render() {
